@@ -1,0 +1,135 @@
+
+  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>ORDF Ontology Service - Graph - Vocabulaire ORDF</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="shortcut icon" href="http://m.okfn.org/gfx/logo/favicon.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="http://m.okfn.org/kforge/css/master.css" type="text/css" media="screen, print" title="Master stylesheet" charset="utf-8" />
+  <link rel="stylesheet" href="http://m.okfn.org/kforge/css/pagination.css" type="text/css" media="screen, print" title="Master stylesheet" charset="utf-8" />
+      <link rel="stylesheet" href="http://ordf.org/css/fresnel.css" type="text/css" />
+</head>
+<body>
+<div id="airlock">
+  <!--[if IE]>
+    <hr class="holder" />
+  <![endif]-->
+  <div id="top">
+    <div id="top-inner">
+      <div id="top-bar">
+        <!--<topbar>-->
+        <!--</topbar>-->
+      </div><!-- /top-bar -->
+      <h1>
+        <a href="/" title="ORDF Ontology Service Home">ORDF Ontology Service</a><sup>v0.8.53.8be2011aa372</sup>
+      </h1>
+    </div><!-- /top-inner -->
+    <div id="navbar">
+      <h3 class="hidden">Sections:</h3>
+      <ul id="navigation">
+	<li><a href="/">Home</a></li>
+	<li><a href="sparql">SPARQL</a></li>
+	<!-- 
+  	    <li><a href="${url('search')}">Search</a></li>
+	    <li><a href="${url('about')}">About</a></li>
+  	    <li><a href="${url('get-involved')}">Get Involved</a></li>
+	-->
+      </ul>
+      <h3 class="hidden">In this section:</h3>
+      <ul id="subnav">
+    <li>Vocabulaire ORDF</li>
+      </ul>
+    </div>
+  </div><!-- /top -->
+  <div id="main">
+    <div id="content">
+    <div>
+    <div class="fresnel_container"><div class="fresnel_resource"><div class="fresnel_resource_uri"><a href="http://ordf.org/schema/ordf">http://ordf.org/schema/ordf</a></div><div class="fresnel_property h2_container"><div class="fresnel_container"><div class="fresnel_value h2"><span><span class="fresnel_object_language"> (en) </span><p>ORDF Vocabulary</p>
+</span></div><div class="fresnel_value h2"><span><span class="fresnel_object_language"> (fr) </span><p>Vocabulaire ORDF</p>
+</span></div></div></div><div class="fresnel_property nolabel"><div class="fresnel_container"><div class="fresnel_value"><span><p>The ORDF vocabulary is somewhat of a grab-bag
+of predicates that could in principle belong in other vocabularies
+but for whatever reason they don't exist.</p>
+<p>A major group of predicates is the ones that have to do with
+recording software versions, the host it was run on and such
+into an <em>opmv:Process</em>.</p>
+<p>See the <a class="reference external" href="http://ordf.org/doc/">ORDF Documentation</a> for more information on how and
+why these predicates exist.</p>
+<p>The canonical namespace for this vocabulary is
+<a class="reference external" href="http://purl.org/NET/ordf/">http://purl.org/NET/ordf/</a></p>
+</span></div></div></div><div class="fresnel_property"><span class="fresnel_label">changeSet</span><div class="fresnel_container"><div class="fresnel_value"><a href="http://ordf.org/changes/a61b4daa-95b6-11df-8900-12313c018262">http://ordf.org/changes/a61b4daa-95b6-11df-8900-12313c018262</a></div></div></div><div class="fresnel_property"><span class="fresnel_label">wasGeneratedBy</span><div class="fresnel_container"><div class="fresnel_value"><div class="fresnel_resource"><div class="fresnel_property"><span class="fresnel_label">wasPerformedAt</span><div class="fresnel_container"><div class="fresnel_value"><div class="fresnel_resource"><div class="fresnel_property nolabel"><div class="fresnel_container"><div class="fresnel_value"><span>Thu Jul 22 17:29:14 2010</span></div></div></div></div></div></div></div><div class="fresnel_property"><span class="fresnel_label">version</span><div class="fresnel_container"><div class="fresnel_value"><span>vtovWlFy4044</span></div></div></div><div class="fresnel_property"><span class="fresnel_label">hostname</span><div class="fresnel_container"><div class="fresnel_value"><span><p>eu4.okfn.org</p>
+</span></div></div></div><div class="fresnel_property"><span class="fresnel_label">pid</span><div class="fresnel_container"><div class="fresnel_value"><span>20421</span></div></div></div><div class="fresnel_property"><span class="fresnel_label">cmdline</span><div class="fresnel_container"><div class="fresnel_value"><span><p>/home/ordf/bin/ordf_load -v debug -c /home/ordf/etc/onto.ini -p ordf.vocab</p>
+</span></div></div></div></div></div></div></div><div class="fresnel_property"><span class="fresnel_label">seeAlso</span><div class="fresnel_container"><div class="fresnel_value"><a href="http://ordf.org/doc/">http://ordf.org/doc/</a></div><div class="fresnel_value"><a href="http://ordf.org/src/">http://ordf.org/src/</a></div></div></div></div><div class="fresnel_resource"><div class="fresnel_resource_uri"><a href="http://purl.org/NET/ordf/changeSet">ordf:changeSet</a></div><div class="fresnel_property h2_container"><div class="fresnel_container"><div class="fresnel_value h2"><span><p>Change Set</p>
+</span></div></div></div><div class="fresnel_property nolabel"><div class="fresnel_container"><div class="fresnel_value"><span><p>Present in a <em>rdfg:Graph</em> to indicate the most recent
+changeset in its history</p>
+</span></div></div></div><div class="fresnel_property"><span class="fresnel_label">type</span><div class="fresnel_container"><div class="fresnel_value"><a href="http://www.w3.org/2000/01/rdf-schema#Resource">rdfs:Resource</a></div><div class="fresnel_value"><a href="http://www.w3.org/2002/07/owl#ObjectProperty">owl:ObjectProperty</a></div></div></div><div class="fresnel_property"><span class="fresnel_label">domain</span><div class="fresnel_container"><div class="fresnel_value"><a href="http://www.w3.org/2004/03/trix/rdfg-1/Graph">rdfg:Graph</a></div></div></div><div class="fresnel_property"><span class="fresnel_label">range</span><div class="fresnel_container"><div class="fresnel_value"><a href="http://purl.org/vocab/changeset/schema#ChangeSet">cs:ChangeSet</a></div></div></div></div><div class="fresnel_resource"><div class="fresnel_resource_uri"><a href="http://purl.org/NET/ordf/graph">ordf:graph</a></div><div class="fresnel_property h2_container"><div class="fresnel_container"><div class="fresnel_value h2"><span><p>Reference to a graph</p>
+</span></div></div></div><div class="fresnel_property nolabel"><div class="fresnel_container"><div class="fresnel_value"><span><p>Unfortunately in RDF there is no good way to refer to
+an <em>rdfg:Graph</em>. This predicate makes that possible.</p>
+<p>It is used in particular in the <a class="reference external" href="http://ordf.org/doc/changesets.html">ORDF extensions</a> to the Talis
+<em>changeset</em> vocabulary</p>
+</span></div></div></div><div class="fresnel_property"><span class="fresnel_label">type</span><div class="fresnel_container"><div class="fresnel_value"><a href="http://www.w3.org/2000/01/rdf-schema#Resource">rdfs:Resource</a></div><div class="fresnel_value"><a href="http://www.w3.org/2002/07/owl#ObjectProperty">owl:ObjectProperty</a></div></div></div><div class="fresnel_property"><span class="fresnel_label">range</span><div class="fresnel_container"><div class="fresnel_value"><a href="http://www.w3.org/2004/03/trix/rdfg-1/Graph">rdfg:Graph</a></div></div></div></div><div class="fresnel_resource"><div class="fresnel_resource_uri"><a href="http://purl.org/NET/ordf/lens">ordf:lens</a></div><div class="fresnel_property h2_container"><div class="fresnel_container"><div class="fresnel_value h2"><span><p>Lens</p>
+</span></div></div></div><div class="fresnel_property nolabel"><div class="fresnel_container"><div class="fresnel_value"><span><p>Indicates which fresnel:Lens to use when displaying a
+graph. In the display system implemented by the <em>ontosrv</em> application
+the default Fresnel instructions to use to render a <em>rdfg:Graph</em> are
+found by looking for this predicate.</p>
+</span></div></div></div><div class="fresnel_property"><span class="fresnel_label">type</span><div class="fresnel_container"><div class="fresnel_value"><a href="http://www.w3.org/2000/01/rdf-schema#Resource">rdfs:Resource</a></div><div class="fresnel_value"><a href="http://www.w3.org/2002/07/owl#ObjectProperty">owl:ObjectProperty</a></div></div></div><div class="fresnel_property"><span class="fresnel_label">domain</span><div class="fresnel_container"><div class="fresnel_value"><a href="http://www.w3.org/2004/03/trix/rdfg-1/Graph">rdfg:Graph</a></div></div></div><div class="fresnel_property"><span class="fresnel_label">range</span><div class="fresnel_container"><div class="fresnel_value"><a href="http://www.w3.org/2004/09/fresnel#Lens">fresnel:Lens</a></div></div></div></div><div class="fresnel_resource"><div class="fresnel_resource_uri"><a href="http://purl.org/NET/ordf/lensList">ordf:lensList</a></div><div class="fresnel_property h2_container"><div class="fresnel_container"><div class="fresnel_value h2"><span><p>Lens List</p>
+</span></div></div></div><div class="fresnel_property nolabel"><div class="fresnel_container"><div class="fresnel_value"><span><p>Indicates the order of applying fresnel:Lens within a
+fresnel document. This is an extension to the <em>fresnel</em> vocabulary</p>
+</span></div></div></div><div class="fresnel_property"><span class="fresnel_label">type</span><div class="fresnel_container"><div class="fresnel_value"><a href="http://www.w3.org/2000/01/rdf-schema#Resource">rdfs:Resource</a></div><div class="fresnel_value"><a href="http://www.w3.org/2002/07/owl#ObjectProperty">owl:ObjectProperty</a></div></div></div></div><div class="fresnel_resource"><div class="fresnel_resource_uri"><a href="http://purl.org/NET/ordf/subGraph">ordf:subGraph</a></div><div class="fresnel_property h2_container"><div class="fresnel_container"><div class="fresnel_value h2"><span><p>sub-graph</p>
+</span></div></div></div><div class="fresnel_property nolabel"><div class="fresnel_container"><div class="fresnel_value"><span><p>Indicates a sub-graph containing statements belonging
+also to this <em>rdfg:Graph</em></p>
+</span></div></div></div><div class="fresnel_property"><span class="fresnel_label">type</span><div class="fresnel_container"><div class="fresnel_value"><a href="http://www.w3.org/2000/01/rdf-schema#Resource">rdfs:Resource</a></div><div class="fresnel_value"><a href="http://www.w3.org/2002/07/owl#ObjectProperty">owl:ObjectProperty</a></div></div></div><div class="fresnel_property"><span class="fresnel_label">domain</span><div class="fresnel_container"><div class="fresnel_value"><a href="http://www.w3.org/2004/03/trix/rdfg-1/Graph">rdfg:Graph</a></div></div></div><div class="fresnel_property"><span class="fresnel_label">range</span><div class="fresnel_container"><div class="fresnel_value"><a href="http://www.w3.org/2004/03/trix/rdfg-1/Graph">rdfg:Graph</a></div></div></div></div><div class="fresnel_resource"><div class="fresnel_resource_uri"><a href="http://purl.org/NET/ordf/additionCount">ordf:additionCount</a></div><div class="fresnel_property h2_container"><div class="fresnel_container"><div class="fresnel_value h2"><span><p>Added</p>
+</span></div></div></div><div class="fresnel_property nolabel"><div class="fresnel_container"><div class="fresnel_value"><span><p>Number of statements added in this changeset. This
+is an extension to the Talis <em>changeset</em> vocabulary</p>
+</span></div></div></div><div class="fresnel_property"><span class="fresnel_label">type</span><div class="fresnel_container"><div class="fresnel_value"><a href="http://www.w3.org/2000/01/rdf-schema#Resource">rdfs:Resource</a></div><div class="fresnel_value"><a href="http://www.w3.org/2002/07/owl#DatatypeProperty">owl:DatatypeProperty</a></div></div></div><div class="fresnel_property"><span class="fresnel_label">domain</span><div class="fresnel_container"><div class="fresnel_value"><a href="http://purl.org/vocab/changeset/schema#ChangeSet">cs:ChangeSet</a></div></div></div><div class="fresnel_property"><span class="fresnel_label">range</span><div class="fresnel_container"><div class="fresnel_value"><a href="http://www.w3.org/2001/XMLSchema#integer">xsd:integer</a></div></div></div></div><div class="fresnel_resource"><div class="fresnel_resource_uri"><a href="http://purl.org/NET/ordf/cmdline">ordf:cmdline</a></div><div class="fresnel_property h2_container"><div class="fresnel_container"><div class="fresnel_value h2"><span><p>Command Line</p>
+</span></div></div></div><div class="fresnel_property nolabel"><div class="fresnel_container"><div class="fresnel_value"><span><p>Used to record the Command line used to operate
+on data in an opmv:Process for provenance purposes</p>
+</span></div></div></div><div class="fresnel_property"><span class="fresnel_label">type</span><div class="fresnel_container"><div class="fresnel_value"><a href="http://www.w3.org/2000/01/rdf-schema#Resource">rdfs:Resource</a></div><div class="fresnel_value"><a href="http://www.w3.org/2002/07/owl#DatatypeProperty">owl:DatatypeProperty</a></div></div></div><div class="fresnel_property"><span class="fresnel_label">domain</span><div class="fresnel_container"><div class="fresnel_value"><a href="http://purl.org/net/opmv/ns#Process">opmv:Process</a></div></div></div></div><div class="fresnel_resource"><div class="fresnel_resource_uri"><a href="http://purl.org/NET/ordf/hostname">ordf:hostname</a></div><div class="fresnel_property h2_container"><div class="fresnel_container"><div class="fresnel_value h2"><span><p>Host Name</p>
+</span></div></div></div><div class="fresnel_property nolabel"><div class="fresnel_container"><div class="fresnel_value"><span><p>Used to record the name of the host running a process
+operating on data in an opmv:Process for provenance purposes</p>
+</span></div></div></div><div class="fresnel_property"><span class="fresnel_label">type</span><div class="fresnel_container"><div class="fresnel_value"><a href="http://www.w3.org/2000/01/rdf-schema#Resource">rdfs:Resource</a></div><div class="fresnel_value"><a href="http://www.w3.org/2002/07/owl#DatatypeProperty">owl:DatatypeProperty</a></div></div></div><div class="fresnel_property"><span class="fresnel_label">domain</span><div class="fresnel_container"><div class="fresnel_value"><a href="http://purl.org/net/opmv/ns#Process">opmv:Process</a></div></div></div></div><div class="fresnel_resource"><div class="fresnel_resource_uri"><a href="http://purl.org/NET/ordf/pid">ordf:pid</a></div><div class="fresnel_property h2_container"><div class="fresnel_container"><div class="fresnel_value h2"><span><p>Process ID</p>
+</span></div></div></div><div class="fresnel_property nolabel"><div class="fresnel_container"><div class="fresnel_value"><span><p>Used to record the pid of the process operating on
+data in an opmv:Process for provenance purposes</p>
+</span></div></div></div><div class="fresnel_property"><span class="fresnel_label">type</span><div class="fresnel_container"><div class="fresnel_value"><a href="http://www.w3.org/2000/01/rdf-schema#Resource">rdfs:Resource</a></div><div class="fresnel_value"><a href="http://www.w3.org/2002/07/owl#DatatypeProperty">owl:DatatypeProperty</a></div></div></div><div class="fresnel_property"><span class="fresnel_label">domain</span><div class="fresnel_container"><div class="fresnel_value"><a href="http://purl.org/net/opmv/ns#Process">opmv:Process</a></div></div></div></div><div class="fresnel_resource"><div class="fresnel_resource_uri"><a href="http://purl.org/NET/ordf/removalCount">ordf:removalCount</a></div><div class="fresnel_property h2_container"><div class="fresnel_container"><div class="fresnel_value h2"><span><p>Removed</p>
+</span></div></div></div><div class="fresnel_property nolabel"><div class="fresnel_container"><div class="fresnel_value"><span><p>Number of statements removed in this changeset. This
+is an extension to the Talis <em>changeset</em> vocabulary</p>
+</span></div></div></div><div class="fresnel_property"><span class="fresnel_label">type</span><div class="fresnel_container"><div class="fresnel_value"><a href="http://www.w3.org/2000/01/rdf-schema#Resource">rdfs:Resource</a></div><div class="fresnel_value"><a href="http://www.w3.org/2002/07/owl#DatatypeProperty">owl:DatatypeProperty</a></div></div></div><div class="fresnel_property"><span class="fresnel_label">domain</span><div class="fresnel_container"><div class="fresnel_value"><a href="http://purl.org/vocab/changeset/schema#ChangeSet">cs:ChangeSet</a></div></div></div><div class="fresnel_property"><span class="fresnel_label">range</span><div class="fresnel_container"><div class="fresnel_value"><a href="http://www.w3.org/2001/XMLSchema#integer">xsd:integer</a></div></div></div></div><div class="fresnel_resource"><div class="fresnel_resource_uri"><a href="http://purl.org/NET/ordf/version">ordf:version</a></div><div class="fresnel_property h2_container"><div class="fresnel_container"><div class="fresnel_value h2"><span><p>ORDF Software Version</p>
+</span></div></div></div><div class="fresnel_property nolabel"><div class="fresnel_container"><div class="fresnel_value"><span><p>Used to record the ORDF software version in an
+opmv:Process for provenance purposes. Other packages that wish to
+add their versions to provenance information should define a suitable
+predicate in their own namespaces as an <em>rdfs:subPropertyOf</em> this</p>
+</span></div></div></div><div class="fresnel_property"><span class="fresnel_label">type</span><div class="fresnel_container"><div class="fresnel_value"><a href="http://www.w3.org/2000/01/rdf-schema#Resource">rdfs:Resource</a></div><div class="fresnel_value"><a href="http://www.w3.org/2002/07/owl#DatatypeProperty">owl:DatatypeProperty</a></div></div></div><div class="fresnel_property"><span class="fresnel_label">domain</span><div class="fresnel_container"><div class="fresnel_value"><a href="http://purl.org/net/opmv/ns#Process">opmv:Process</a></div></div></div></div></div>
+  </div>
+    </div>
+    <div id="footer">
+      <p>
+        <a href="http://validator.w3.org/check/referer" title="Valid XHTML 1.1">XHTML</a>
+        | <a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a>
+        | <a href="http://www.okfn.org/">Project Home Page</a>
+        | <a href="http://www.okfn.org/contact/">Contact Us</a>
+        | <a href="http://www.okfn.org/privacy-policy/">Privacy Policy</a>
+      </p>
+      <p>
+        <img style="height: 18px; margin-bottom: -4px;" src="http://m.okfn.org/gfx/logo/okf_logo_white_and_green.png" /> An <a href="http://www.okfn.org/">Open Knowledge Foundation</a> Project
+      </p>
+      <p>
+        (c) Open Knowledge Foundation
+        | Most material available under an <a rel="license" href="http://www.opendefinition.org/">open license</a>
+        | <a href="http://www.opendefinition.org/1.0/"><img style="border: none; margin-bottom: -4px;" src="http://m.okfn.org/images/ok_buttons/ok_90x15_blue.png" alt="This Content and Data is Open" /></a>
+      </p>
+    </div><!-- /footer -->
+    <!--[if IE]>
+    <hr class="main" />
+    <![endif]-->
+  </div>
+  <div id="primary" class="sidebar">
+    <div class="box">
+      <h3>Get in Touch</h3>
+      <p>Have a question, found a bug or just want to chat?
+        Please <a href="http://www.okfn.org/contact/">get in
+        touch</a>.
+      </p>
+    </div>
+  </div><!-- /primary -->
+</div><!-- /airlock -->
+</body>
+</html>

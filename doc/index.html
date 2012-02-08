@@ -1,0 +1,187 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>ORDF Documentation &mdash; Open Knowledge Foundation RDF v0.35 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.35',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Open Knowledge Foundation RDF v0.35 documentation" href="#" />
+    <link rel="next" title="Design Considerations" href="design_considerations.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="design_considerations.html" title="Design Considerations"
+             accesskey="N">next</a> |</li>
+        <li><a href="#">Open Knowledge Foundation RDF v0.35 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="ordf-documentation">
+<h1>ORDF Documentation<a class="headerlink" href="#ordf-documentation" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="http://ordf.org/">ORDF</a> is the <a class="reference external" href="http://okfn.org/">Open Knowledge Foundation</a>&#8216;s library of support
+infrastructure for <a class="reference external" href="http://en.wikipedia.org/wiki/Resource_Description_Framework">RDF</a>. It is available from</p>
+<blockquote>
+<div><ul class="simple">
+<li>PyPi: <a class="reference external" href="http://pypi.python.org/pypi/ordf/">http://pypi.python.org/pypi/ordf/</a></li>
+<li>Mercurial: <a class="reference external" href="http://ordf.org/src/">http://ordf.org/src/</a></li>
+</ul>
+</div></blockquote>
+<p>It is based on <a class="reference external" href="http://www.rdflib.net/">RDFLib</a> and contains an object-description mapper, support
+for multiple back-end indices, message passing, revision history and
+provenance, a namespace library and  a variety of helper functions and
+modules to ease integration with the <a class="reference external" href="http://pylonshq.com/">Pylons</a> framework.</p>
+<p>Contents:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="design_considerations.html">Design Considerations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="design_considerations.html#the-world-before-rdf">The World Before RDF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design_considerations.html#the-entity-attribute-value-model">The Entity-Attribute-Value Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design_considerations.html#information-interchange-and-rdf">Information Interchange and RDF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design_considerations.html#rdf-back-end-design">RDF back-end Design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design_considerations.html#message-passing">Message Passing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design_considerations.html#revision-histories-and-change-sets">Revision Histories and Change Sets</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="notation3.html">RDF Notation 3</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="notation3.html#w3c-documentation">W3C Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notation3.html#fresnel-lenses">Fresnel Lenses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notation3.html#inference-engines">Inference Engines</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="graphs.html">Graphs in RDF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="distribution.html">Obtaining and Using ORDF</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="distribution.html#mercurial-repositories">Mercurial Repositories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="distribution.html#applications-using-ordf">Applications using ORDF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="distribution.html#getting-help">Getting Help</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="administration.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="administration.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="administration.html#running-the-tests">Running the Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="administration.html#building-documentation">Building Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="administration.html#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="administration.html#a-testing-environment">A Testing Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="administration.html#a-production-environment">A Production Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="administration.html#configuring-inferencing">Configuring Inferencing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="administration.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cmdline.html">Command Line Utilities</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cmdline.html#ordf"><strong class="program">ordf</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="cmdline.html#ordf-load"><strong class="program">ordf_load</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="cmdline.html#command-implementation-command">Command Implementation &#8211; <tt class="docutils literal"><span class="pre">Command</span></tt></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api_docs.html">API Documentation for <tt class="docutils literal"><span class="pre">ordf</span></tt></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="odm.html">Object Description Mapper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="namespaces.html">Namespace Declarations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="message_handling.html">Messaging and Storage Subsystem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pylons_support.html">Pylons Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vocabulary.html">RDF Graphs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vocabulary.html#vocabulary-modules">Vocabulary Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="miscellaneous.html">Miscellaneous Utilities</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><em>Index</em></a></li>
+<li><a class="reference internal" href="py-modindex.html"><em>Module Index</em></a></li>
+<li><a class="reference internal" href="search.html"><em>Search Page</em></a></li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">ORDF Documentation</a><ul>
+</ul>
+</li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+
+  <h4>Next topic</h4>
+  <p class="topless"><a href="design_considerations.html"
+                        title="next chapter">Design Considerations</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/index.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="design_considerations.html" title="Design Considerations"
+             >next</a> |</li>
+        <li><a href="#">Open Knowledge Foundation RDF v0.35 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2010, Open Knowledge Foundation.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+    </div>
+  </body>
+</html>

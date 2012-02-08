@@ -1,0 +1,320 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Design Considerations &mdash; Open Knowledge Foundation RDF v0.35 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.35',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Open Knowledge Foundation RDF v0.35 documentation" href="index.html" />
+    <link rel="next" title="RDF Notation 3" href="notation3.html" />
+    <link rel="prev" title="ORDF Documentation" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="notation3.html" title="RDF Notation 3"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="ORDF Documentation"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Open Knowledge Foundation RDF v0.35 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="design-considerations">
+<h1>Design Considerations<a class="headerlink" href="#design-considerations" title="Permalink to this headline">¶</a></h1>
+<p>Before going into the technical details of how the ORDF library
+works, perhaps it is helpful to explain some of what led us here.</p>
+<div class="toctree-wrapper compound">
+<ul class="simple">
+</ul>
+</div>
+<div class="section" id="the-world-before-rdf">
+<h2>The World Before RDF<a class="headerlink" href="#the-world-before-rdf" title="Permalink to this headline">¶</a></h2>
+<p>The story begins, really, with the <a class="reference external" href="http://ckan.net/">CKAN</a> software, which provides
+a metadata registry for catalogueuing datasets. It is a
+traditional <a class="reference external" href="http://pylonshq.com/">Pylons</a> application with a SQL back-end and all the
+usual models and controllers and such. The basic design pattern
+would be familiar to anyone who has ever used a <a class="reference external" href="http://en.wikipedia.org/wiki/Model_View_Controller">MVC</a> framework
+such as <a class="reference external" href="http://pylonshq.com/">Pylons</a> or <a class="reference external" href="http://www.djangoproject.com/">Django</a> or <a class="reference external" href="http://rubyonrails.org/">Ruby on Rails</a>.</p>
+<p>As the community expanded
+others started running instances of the software. Where we
+started with a single site, now there is a decentralised network
+of sites in Canada, Germany and elsewhere. Even some governments
+are running their national data catalogues using it, for example
+<a class="reference external" href="http://data.gov.uk/">http://data.gov.uk/</a>.</p>
+<p>Perhaps unsurprisingly it was not long before members of this
+community began to want slight changes to the data model to suit
+their local requirements. The most common request was to have
+additional metadata for a package. There was no particular common
+thread to the specific metadata each wanted so a system was
+devised to be able to add arbitrary key-value pairs to a package,
+along with a way to specify how they were to be edited and
+validated.</p>
+<p>This was a less than elegant solution, but it was simple and it
+worked. Each site now has an extensions file that says what extra
+pieces of data they want.</p>
+<p>And then came the <a class="reference external" href="http://inspire.jrc.ec.europa.eu/">INSPIRE Directive</a> which says that member
+states of the European Union must make certain geographic data
+available to the public. In order to be able to do this well, to
+be able to add geographic metadata to catalogue entries and search
+it with bounding boxes or circles we need to have a specialised
+index on this metadata.</p>
+<p>Making a spatial index is not hard, there is good support in
+<a class="reference external" href="http://www.postgis.org/">PostGIS</a>, the <a class="reference external" href="http://en.wikipedia.org/wiki/Geographic_Information_System">GIS</a> extensions for the <a class="reference external" href="http://www.postgresql.org/">PostgreSQL</a> database that
+we typically use, but it means that using a table of key-value
+pairs is out and entails more extensive changes to the schema.</p>
+<p>Worse, it risks introducing a dependency on <a class="reference external" href="http://www.postgis.org/">PostGIS</a> for sites
+that have no need of it &#8211; sites outside of the EU that are not
+concerned with geographic data.</p>
+<p>It seemed like we were running up against the limits of the usual
+SQL-backed <a class="reference external" href="http://en.wikipedia.org/wiki/Model_View_Controller">MVC</a> approach in trying to run a federated network of
+data catalogues, each with their own local extensions and slightly
+different requirements.</p>
+<p>The particular drawbacks can be summarised:</p>
+<blockquote>
+<div><ul class="simple">
+<li>SQL schemas are rigid. Making changes to the database schema
+means making parallel changes in the application code and
+making sure any running database is in sync.</li>
+<li>Hacks like the table of key-value pairs to avoid divergent
+schemas at different sites forego efficient indexing and
+the expressivity otherwise possible with SQL for those fields.</li>
+<li>Indexing of datatypes other than strings is impossible with
+the key-value pair arrangement.</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="the-entity-attribute-value-model">
+<h2>The Entity-Attribute-Value Model<a class="headerlink" href="#the-entity-attribute-value-model" title="Permalink to this headline">¶</a></h2>
+<p>The problems we were encountering with the <a class="reference external" href="http://ckan.net/">CKAN</a> network appear
+because in a decentralised environment the equivalence of conceptual
+model and SQL table (or group of tables) starts to break down.
+Each node in the network has a slightly different idea of what the
+meaning of a model is and supporting these overlapping but different
+conceptions is not something that SQL is well suited to.</p>
+<p>This is, however, not a new problem. A common problem domain
+example is a system to model medical patients&#8217; complaints. There are
+a large number of possible complaints and any patient will only have
+a small number of them. It quickly becomes unwieldy to either have
+a very large number of tables, one for each type of complaint (not
+to mention what happens when a new complaint is encountered) or to
+have a table of patients with a very large number of mostly empty
+columns.</p>
+<p>If you think of a matrix where the rows correspond to patients and
+the columns correspond to complaints, and a particular cell holds
+the value 1 if a particular complaint is present for that patient
+and 0 otherwise, the matrix will hold mostly zeros. This is known as
+a <a class="reference external" href="http://en.wikipedia.org/wiki/Sparse_matrix">sparse matrix</a> and is well studied in the mathematical and computer
+science literature.</p>
+<p>Quite clearly in the <a class="reference external" href="http://ckan.net/">CKAN</a> problem domain the model is not nearly
+as sparse as in the example. In fact most datasets in the catalogue
+can be expected to have most of the attributes and the sparse area
+is more or less limited to the key-value pair site extensions. However
+the more sites there are the larger this subset of metadata becomes.</p>
+<p>In data-modelling a model that has these characteristics is known
+as an <a class="reference external" href="http://en.wikipedia.org/wiki/Entity-attribute-value_model">Entity Attribute Value</a> or <a class="reference external" href="http://en.wikipedia.org/wiki/Entity-attribute-value_model">EAV</a> model. <a class="reference external" href="http://en.wikipedia.org/wiki/Resource_Description_Framework">RDF</a> is an example of
+a way to represent things in an <a class="reference external" href="http://en.wikipedia.org/wiki/Entity-attribute-value_model">EAV</a> manner.</p>
+</div>
+<div class="section" id="information-interchange-and-rdf">
+<h2>Information Interchange and RDF<a class="headerlink" href="#information-interchange-and-rdf" title="Permalink to this headline">¶</a></h2>
+<p>A related problem that arises when we start allowing local extensions
+to the data model is about what to do when aggregating data. A simple
+answer is to just aggregate the core information but this is very
+probably not good enough. What happens when different sites define an
+extension with the same name but different meanings?</p>
+<p>This is what led us to the <a class="reference external" href="http://en.wikipedia.org/wiki/Resource_Description_Framework">Resource Description Framework</a>. In the
+<a class="reference external" href="http://en.wikipedia.org/wiki/Resource_Description_Framework">RDF</a> model, the attributes of an entity (called predicate and subject,
+respectively, in the <a class="reference external" href="http://en.wikipedia.org/wiki/Resource_Description_Framework">RDF</a> nomenclature) are <a class="reference external" href="http://en.wikipedia.org/wiki/Uniform_Resource_Identifier">URI</a> s. This gives us a
+global namespace that is locally extensible to avoid collisions.</p>
+<p>Furthermore, there are a large variety of existing <a class="reference external" href="http://esw.w3.org/TaskForces/CommunityProjects/LinkingOpenData/CommonVocabularies">RDF Vocabularies</a>
+which may be useful for describing our data without having to re-invent
+the wheel.</p>
+<p>It also quickly became apparent that it should be possible to build a
+system that can be repurposed for other projects easily - after all if
+we are not constrained to put the bulk of our thinking into a SQL
+schema rigidly tied to python classes, then the software becomes more
+decoupled from the data and hence more reuseable.</p>
+<p>In April of 2010 we started work on a new project with the University
+of Edinburgh <a class="reference external" href="http://idea.ed.ac.uk/">IDEALab</a> for a new type of bibliographic information
+creation and collaboration platform and decided that this was a good
+opportunity to pursue this new strategy.</p>
+</div>
+<div class="section" id="rdf-back-end-design">
+<span id="id1"></span><h2>RDF back-end Design<a class="headerlink" href="#rdf-back-end-design" title="Permalink to this headline">¶</a></h2>
+<p>Some project members had done work with <a class="reference external" href="http://en.wikipedia.org/wiki/Resource_Description_Framework">RDF</a> before, and we embarked
+on a project to see how the state of the art had advanced since we
+last looked. It was not exceptionally impressive. Without naming names,
+the choices for storing RDF data all have several of the following
+problems:</p>
+<blockquote>
+<div><ul class="simple">
+<li>slow when holding a lot of data</li>
+<li>large in terms of resource (disc, memory, software) requirements</li>
+<li>complicated to set-up</li>
+<li>poor support for aggregate operations</li>
+<li>poor support for indices on specific values</li>
+<li>poor support for full-text indices</li>
+</ul>
+</div></blockquote>
+<p>After some initial efforts using <a class="reference external" href="http://4store.org/">4store</a> we found that a collegue at
+the University of Oxford, <a class="reference external" href="http://brii.ouls.ox.ac.uk/about-us/ben-osteen">Ben O&#8217;Steen</a> had been thinking about this
+very problem. While the ORDF software only uses some of his lower-level
+primitives, the arrangement of the <a class="reference external" href="http://en.wikipedia.org/wiki/Resource_Description_Framework">RDF</a> storage is very much bears the
+mark of his thinking.</p>
+<p>The basic idea is to use a variety of indices. The most basic (and most
+important) is simply the filesystem. Serialised <a class="reference external" href="http://en.wikipedia.org/wiki/Resource_Description_Framework">RDF</a> files are stored
+in a specialised directory hierarchy. They can be read and written very
+quickly and efficiently if you know their identifiers or filenames but
+they cannot be searched.</p>
+<p>For searching or querying we use two other indices at the moment. We
+have persevered with <a class="reference external" href="http://4store.org/">4store</a>. This gives us the abilty to search and
+explore relationships between entities using the <a class="reference external" href="http://en.wikipedia.org/wiki/SPARQL">SPARQL</a> query language.
+We also use <a class="reference external" href="http://xapian.org/">Xapian</a> for full-text indexing. The actual process of building
+the full-text index is somewhat application specific if it is to be done
+in a more advanced way than simply looking at some of the predicates
+that commonly contain informative string literals, but that means
+that applications using the ORDF software simply need to define one
+function to do this and a corresponding function for searching.</p>
+</div>
+<div class="section" id="message-passing">
+<h2>Message Passing<a class="headerlink" href="#message-passing" title="Permalink to this headline">¶</a></h2>
+<p>Once we were committed to having a primary filesystem store and a variety
+of associated indices, perhaps allowing indices to exist on different
+hosts for scalability, the question arises of how to keep them in sync
+and updated.</p>
+<p>We use a strategy where a save operation on an <a class="reference external" href="http://en.wikipedia.org/wiki/Resource_Description_Framework">RDF</a> graph (a named
+collection of statements) first writes the new graph into the filesystem
+storage and then passes it on to a message queueing system &#8211; <a class="reference external" href="http://www.rabbitmq.com/">RabbitMQ</a>
+in particular. Each index then has a small daemon that then listens for
+incoming messages and does whatever updates are required.</p>
+<p>This is implemented in such a way as to not <em>require</em> the use of <a class="reference external" href="http://www.rabbitmq.com/">RabbitMQ</a>,
+it is perfectly possible to simply iterate over the indexes and give them
+the graph to update instead of passing them to the messaging subsystem but
+a live, production system would typically make use of the greater
+robustness of such a setup.</p>
+<p>Use of a message queueing system in this way also opens the way to doing
+more expensive operations on the graph after a user may have saved it but
+before the indices are updated. A good example would be <a class="reference external" href="http://en.wikipedia.org/wiki/Production_rule">Production Rule</a>
+inferencing using, for example, <a class="reference external" href="http://code.google.com/p/fuxi">FuXi</a> to populate the system with extra
+statements that are implied by the data received from the user but not
+explicitly stated. This means richer data and more interesting searching
+possibilities. The whole arrangement can start looking like an
+<a class="reference external" href="http://en.wikipedia.org/wiki/Expert_system">Expert System</a> though there is much to be done first before this
+tantalising direction can be fully explored.</p>
+</div>
+<div class="section" id="revision-histories-and-change-sets">
+<h2>Revision Histories and Change Sets<a class="headerlink" href="#revision-histories-and-change-sets" title="Permalink to this headline">¶</a></h2>
+<p>Another requirement common to most data management projects, <a class="reference external" href="http://ckan.net/">CKAN</a> and
+<a class="reference external" href="http://bibliographica.org/">Bibliographica</a> alike is the keeping of change history data. It is not
+simply enough to overwrite previous versions. <a class="reference external" href="http://ckan.net/">CKAN</a> uses a specially
+implemented <a class="reference external" href="http://www.okfn.org/vdm/">Versioned Domain Model</a> which implements this for objects
+in a SQL database.</p>
+<p>We decide to build on the <a class="reference external" href="http://n2.talis.com/wiki/Changesets">Changesets</a> vocabulary from Talis. We had to
+extend it in a few ways in order to include a notion of <a class="reference external" href="http://en.wikipedia.org/wiki/Resource_Description_Framework">RDF</a> graphs which
+are the basic unit of storage in our back-end and simultaneous changes
+to multiple such graphs.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Design Considerations</a><ul>
+<li><a class="reference internal" href="#the-world-before-rdf">The World Before RDF</a></li>
+<li><a class="reference internal" href="#the-entity-attribute-value-model">The Entity-Attribute-Value Model</a></li>
+<li><a class="reference internal" href="#information-interchange-and-rdf">Information Interchange and RDF</a></li>
+<li><a class="reference internal" href="#rdf-back-end-design">RDF back-end Design</a></li>
+<li><a class="reference internal" href="#message-passing">Message Passing</a></li>
+<li><a class="reference internal" href="#revision-histories-and-change-sets">Revision Histories and Change Sets</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">ORDF Documentation</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="notation3.html"
+                        title="next chapter">RDF Notation 3</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/design_considerations.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="notation3.html" title="RDF Notation 3"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="ORDF Documentation"
+             >previous</a> |</li>
+        <li><a href="index.html">Open Knowledge Foundation RDF v0.35 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2010, Open Knowledge Foundation.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+    </div>
+  </body>
+</html>
